@@ -1,0 +1,55 @@
+{% extends "admin_layout.html" %}
+{% block content %}
+<main class="container my-5">
+  {% if theatres %}
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for theatre in theatres %}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ theatre.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ theatre.location }}</h6>
+          {% if theatre.shows %}
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Date/Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for show in theatre.shows %}
+                <tr>
+                  <td>{{ show.id }}</td>
+                  <td>{{ show.name }}</td>
+                  <td>{{ show.data_time }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <a href="/show/{{ theatre.id}}/{{name}}" class="btn btn-secondary">+ Add Show</a>
+          </div>
+          {% else %}
+          <p>No shows here!</p>
+          <a href="/show/{{ theatre.id}}/{{name}}" class="btn btn-secondary">+ Add Show</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center">
+    <h4>No theatres available!</h4>
+  </div>
+  {% endif %}
+  <!-- Add More Venues Button -->
+  <div class="row my-5">
+    <div class="col text-center">
+      <a href="/venue/{{ name }}" type="button" class="btn btn-primary btn-lg">+ Add Venue</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

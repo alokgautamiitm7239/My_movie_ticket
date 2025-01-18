@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign page</title>
+    <!-- <link rel="stylesheet" href="/My_movie_ticket/static/main.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+</head>
+<body>
+    <div class="login-container">
+        <h1>Register</h1>
+        <form action="/register" method="POST">
+            <div class="input-group">
+                <label for="name">Full name</label>
+                <input name="user_name" type="name" id="f_name" placeholder="Enter your first name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input name="email" type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input name="password" type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="address">Address</label>
+                <input name="address" type="text" id="address" placeholder="01-Katra Mohalla,Prayagraj Uttar Pradesh"></input>
+            </div>
+
+            <div class="input-group">
+                <label for="pincode">Pincode</label>
+                <input name="pincode" type="text" id="password" placeholder="219402" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="signup-link">Already existing user ? <a href="/login">Login</a></p>
+    </div>
+</body>
+</html>

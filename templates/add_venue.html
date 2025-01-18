@@ -1,0 +1,29 @@
+{%extends "admin_layout.html"%}
+{%block content%}
+                <div class="login-container">
+                    <h1>Add venue</h1>
+                    <form action="/venue/{{uname}}" method="POST">
+                        <div class="input-group">
+                            <label for="name">Theatre name</label>
+                            <input name="name" type="text" id="name" placeholder="Enter theatre name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="location">Location</label>
+                            <input name="location" type="text" id="location" placeholder="Prayagraj" required>
+                        </div>
+
+                         <div class="input-group">
+                            <label for="capacity">Capacity</label>
+                            <input name="capacity" type="number" id="capacity" placeholder="required" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="pincode">Pincode</label>
+                            <input name="pincode" type="number" id="pincode" placeholder="219402" required>
+                        </div>
+                        <button type="submit">Submit</button>
+                        <a href="/admin/{{uname}}" type="button" class="btn">Go Back</a>
+                        <div class="center">{{msg}}</div>
+                    </form>
+                </div>
+{%endblock%}
