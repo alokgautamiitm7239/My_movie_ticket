@@ -7,7 +7,7 @@
     <div class="col">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">{{ theatre.name }}</h5>
+          <h5 class="card-title" style="color: rgb(231, 5, 5);">{{ theatre.name }}</a> </h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ theatre.location }}</h6>
           {% if theatre.shows %}
           <div class="table-responsive">
@@ -29,11 +29,13 @@
                 {% endfor %}
               </tbody>
             </table>
-            <a href="/show/{{ theatre.id}}/{{name}}" class="btn btn-secondary">+ Add Show</a>
+            <a href="/show/{{ theatre.id }}/{{ name }}" class="btn btn-outline-success">+ Add Show</a>
+            <a href="/edit_venue/{{ theatre.id }}/{{ name }}" class="btn btn-outline-secondary">Edit/Delete</a>
           </div>
           {% else %}
           <p>No shows here!</p>
-          <a href="/show/{{ theatre.id}}/{{name}}" class="btn btn-secondary">+ Add Show</a>
+          <a href="/show/{{ theatre.id }}/{{ name }}" class="btn btn-outline-success">+ Add Show</a>
+
           {% endif %}
         </div>
       </div>

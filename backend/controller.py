@@ -82,7 +82,37 @@ def show(tid,name):
 
     return render_template("add_show.html" ,uname=name,tid=tid)
 
-#Theatre call function 
+#Route for searching the show
+@app.route("/search/<name>", methods=["GET","POST"])
+def search(name):
+    if request.method=="POST":
+        search_txt=request.form.get("search_txt")
+        by_name=search_by_name(search_txt)
+        by_location=search_by_location(search_txt)
+        if by_name:
+            return render_template("admin.html",name=name,theatres=by_name)
+
+        elif by_location:
+            return render_template("admin.html",name=name,theatres=by_location)
+        
+        else:
+            return render_template("admin.html",name=name,theatres=by_location)
+    
+    return render_template("admin.html" ,name=name)
+
+#Route for edit the show
+@app.route("/edit_venue/<tid>/<name>", methods=["GET","POST"])
+def edit_venue(name,tid):
+    if request.method=="POST": #For register new theatre
+        tname=request.form.get("name")
+        lcn=request.form.get("location")
+        cpt=request.form.get("capacity")
+        pin=request.form.get("pincode")
+        new_theatre=Theatre(name=tname,location=lcn,capacity=cpt,pin_code=pin)
+        db.session.add(new_theatre)
+        db.session.commit()
+    return render_template("edit_venue.html" ,name=name,tid=tid)
+#Complementry function 
 def get_theatre():
     theatres=Theatre.query.all()
     return theatres
@@ -90,3 +120,11 @@ def get_theatre():
 def get_show():
     shows=Show.query.all()
     return shows
+
+def search_by_name(search_txt): 
+    theatres=Theatre.query.filter(Theatre.name.ilike(f"%{search_txt}%")).all() #ilike--> i use for case sensation and like for random filter
+    return theatres
+
+def search_by_location(search_txt):
+    theatres=Theatre.query.filter(Theatre.location.ilike(f"%{search_txt}%")).all()
+    return theatres
